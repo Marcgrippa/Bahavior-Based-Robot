@@ -2,10 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e6ee1e28-1b7f-42f3-8ca7-44981c284de0" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/camera.py" afterPath="$PROJECT_DIR$/camera.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/arbitrator.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bbcon.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/behavior.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sensob.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/Bahavior-Based-Robot.iml" afterPath="$PROJECT_DIR$/.idea/Bahavior-Based-Robot.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Bahavior-Based-Robot.iws" />
     <ignored path=".idea/workspace.xml" />
+    <ignored path=".idea/dataSources.local.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -22,17 +29,78 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="camera.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="camera.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/camera.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="30" column="109" selection-start-line="30" selection-start-column="109" selection-end-line="30" selection-end-column="109" />
+            <state relative-caret-position="405">
+              <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+              <folding>
+                <marker date="1478173414000" expanded="false" signature="0:31" ph="import ..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="bbcon.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/bbcon.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="45">
+              <caret line="3" column="7" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="7" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="sensob.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sensob.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="45">
+              <caret line="3" column="10" selection-start-line="3" selection-start-column="10" selection-end-line="3" selection-end-column="10" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="behavior.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/behavior.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="45">
+              <caret line="3" column="12" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="arbitrator.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/arbitrator.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="45">
+              <caret line="3" column="12" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="imager2.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/imager2.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#21#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
     </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -41,6 +109,10 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/camera.py" />
+        <option value="$PROJECT_DIR$/bbcon.py" />
+        <option value="$PROJECT_DIR$/sensob.py" />
+        <option value="$PROJECT_DIR$/behavior.py" />
+        <option value="$PROJECT_DIR$/arbitrator.py" />
       </list>
     </option>
   </component>
@@ -105,7 +177,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -382,14 +454,60 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1478173414000" expanded="false" signature="0:31" ph="import ..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imager2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/camera.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="30" column="109" selection-start-line="30" selection-start-column="109" selection-end-line="30" selection-end-column="109" />
+        <state relative-caret-position="405">
+          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+          <folding>
+            <marker date="1478173414000" expanded="false" signature="0:31" ph="import ..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bbcon.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="7" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sensob.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="10" selection-start-line="3" selection-start-column="10" selection-end-line="3" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/behavior.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="12" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/arbitrator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="12" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
           <folding />
         </state>
       </provider>
