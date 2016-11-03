@@ -110,3 +110,4 @@ class Motors():
             sleep(duration)
             self.stop()
 
+# Test og sner
