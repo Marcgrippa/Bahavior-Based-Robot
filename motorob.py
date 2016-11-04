@@ -7,6 +7,8 @@ class motob():
         self.motors = []
         # Most recent motor recommendation sent to the motob
         self.value = None
+        # Objektet Motors
+        self.motor = Motors()
 
 
 
@@ -33,4 +35,18 @@ class motob():
         Exp: rec
         :return:
         """
+        val = recommendation[0]
+        dur = recommendation[1]
+
+        if(val == 'S'):
+            self.motor.stop()
+        elif(val == 'F'):
+            self.motor.set_value(1,1)
+        elif(val == 'L'):
+            pass
+        elif(val == 'R'):
+            pass
+        elif(val == 'B'):
+            self.motor.set_value(1,1)
+
         pass
