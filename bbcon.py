@@ -1,5 +1,6 @@
 from arbitrator import Arbitrator
 
+
 class Bbcon():
 
     def __init__(self):
@@ -7,7 +8,7 @@ class Bbcon():
         self.active_behaviors = []              # a list of all behaviors that are currently active.
         self.sensobs = []                       # a list of all sensory objects used by the bbcon
         self.motobs = []                        # a list of all motor objects used by the bbcon
-        arbitrator = Arbitrator()               # the arbitrator object that will resolve actuator requests produced by the behaviors.
+        arbitrator = Arbitrator(self)           # the arbitrator object that will resolve actuator requests produced by the behaviors.
 
     # append a newly-created behavior onto the behaviors list.
     def add_behavior(self, behavior):
@@ -32,9 +33,5 @@ class Bbcon():
 
     # Constitutes the core BBCON activity
     def run_one_timestep(self):
+        #todo: Skriv ferdig
         pass
-
-<<<<<<< Updated upstream
-# commenting sner
-=======
->>>>>>> Stashed changes
