@@ -1,4 +1,6 @@
 from motors import Motors
+from zumo_button import ZumoButton
+
 
 # Thomas er noob
 
@@ -38,17 +40,21 @@ class motob():
         :return:
         """
         val = recommendation[0]
-        dur = recommendation[1]
+        deg = recommendation[1]
 
         if(val == 'S'):
             self.motor.stop()
         elif(val == 'F'):
-            self.motor.set_value(1,1)
+            self.motor.set_value([1,1])
         elif(val == 'L'):
-            pass
+            self.motor.set_value([-1,1], deg)
         elif(val == 'R'):
             pass
         elif(val == 'B'):
-            self.motor.set_value(1,1)
+            self.motor.set_value([-1,-1])
 
         pass
+
+    def runcalc(self):
+        ZumoButton().wait_for_press()
+        self.motor.set_value([-1,1], 100)
