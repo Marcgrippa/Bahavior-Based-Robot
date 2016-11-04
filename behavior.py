@@ -27,7 +27,15 @@ class Behavior():
             self.bbcon.activate_bahavior(self)
 
     def update(self):
+        if self.active_flag is True:
+            for sensob in self.sensobs:
+                sensob.update()
+
+            self.sense_and_act()
+            #ikke ferdig
+
+
+    def sense_and_act(self):
         #todo: Skriv ferdig
         pass
 
-    def sense_and_act(self):
