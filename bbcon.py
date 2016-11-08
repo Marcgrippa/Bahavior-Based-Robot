@@ -1,6 +1,7 @@
 from arbitrator import Arbitrator
 from time import sleep
 
+
 class Bbcon():
 
     def __init__(self):
@@ -8,7 +9,8 @@ class Bbcon():
         self.active_behaviors = []              # a list of all behaviors that are currently active.
         self.sensobs = []                       # a list of all sensory objects used by the bbcon
         self.motobs = []                        # a list of all motor objects used by the bbcon
-        self.arbitrator = Arbitrator()          # the arbitrator object that will resolve actuator requests produced by the behaviors.
+        self.arbitrator = Arbitrator(self)          # the arbitrator object that will resolve actuator requests produced by the behaviors.
+
 
     # append a newly-created behavior onto the behaviors list.
     def add_behavior(self, behavior):
@@ -37,7 +39,6 @@ class Bbcon():
         Main function.
         :return:
         """
-
         # Updates behaviours which in return updates sensobs.
         for behaviour in self.active_behaviors():
             behaviour.update()
@@ -51,5 +52,3 @@ class Bbcon():
         # Reset sensor values
         for sensor in self.sensobs:
             sensor.reset()
-
-

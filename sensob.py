@@ -10,6 +10,7 @@ class Sensob:
         for s in sensors:
             self.associated_sensors_and_values[s] = s.get_value()
 
+
     # The main method for a sensob is update, which should force the sensob
     # to fetch the relevant sensor value(s) and convert them into the pre-processed
     # sensob value
@@ -20,3 +21,11 @@ class Sensob:
     def reset(self):
         for sensor in self.associated_sensors_and_values:
             sensor.reset()
+
+   # The main method for a sensob is update, which should force the sensob
+   # to fetch the relevant sensor value(s) and convert them into the pre-processed
+   # sensob value
+   def update(self):
+       for s in self.associated_sensors_and_values:
+           self.associated_sensors_and_values[s] = s.get_value()
+
