@@ -1,5 +1,7 @@
 from motors import Motors
 
+# Thomas er noob
+
 class motob():
 
     def __init__(self):
