@@ -13,7 +13,7 @@ class Arbitrator():
 
             # if a behavior has a halt request -> abort and report back to Bbcon
             if behavior.halt_request:
-                return behavior.motor_recommendations, behavior.halt_request
+                return behavior.motor_recommendations
 
             # Choose a winning behavior
             elif behavior.weight > temp_weight:
@@ -21,4 +21,4 @@ class Arbitrator():
                 temp_be = behavior
 
         # Winning behaviors motor recommendations gets sendt back to Bbcon
-        return temp_be.motor_recommendations, temp_be.halt_request
+        return temp_be.motor_recommendations
