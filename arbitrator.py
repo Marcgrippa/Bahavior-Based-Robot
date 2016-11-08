@@ -1,4 +1,4 @@
-from motorob import Motob
+from behavior import Behavior
 
 
 class Arbitrator():
