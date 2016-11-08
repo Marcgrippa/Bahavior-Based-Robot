@@ -9,7 +9,7 @@ class Bbcon():
         self.active_behaviors = []              # a list of all behaviors that are currently active.
         self.sensobs = []                       # a list of all sensory objects used by the bbcon
         self.motobs = []                        # a list of all motor objects used by the bbcon
-        self.arbitrator = Arbitrator(self)          # the arbitrator object that will resolve actuator requests produced by the behaviors.
+        self.arbitrator = Arbitrator(self)      # the arbitrator object that will resolve actuator requests produced by the behaviors.
 
 
     # append a newly-created behavior onto the behaviors list.
@@ -40,11 +40,15 @@ class Bbcon():
         :return:
         """
         # Updates behaviours which in return updates sensobs.
-        for behaviour in self.active_behaviors():
+        for behaviour in self.active_behaviors:
             behaviour.update()
 
-        # Lets arbitrator choose action and send recoms to motobs.
-        self.arbitrator.choose_action(self.active_behaviors)
+        # Returns recommondations of
+        motor_recoms = self.arbitrator.choose_action(self.active_behaviors)
+
+        # Update motobs
+        for motob in self.motobs:
+            motob.update(motor_recoms)
 
         # Waits for motors to run
         sleep(0.5)
