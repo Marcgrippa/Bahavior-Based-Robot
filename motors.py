@@ -3,7 +3,6 @@ from time import sleep
 import RPi.GPIO as GPIO
 import wiringpi2 as wp
 
-
 class Motors():
     def __init__(self):
         self.setup()

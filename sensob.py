@@ -16,3 +16,4 @@ class Sensob:
    def update(self):
        for s in self.associated_sensors_and_values:
            self.associated_sensors_and_values[s] = s.get_value()
+
