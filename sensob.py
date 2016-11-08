@@ -16,3 +16,7 @@ class Sensob:
     def update(self):
         for sensor in self.associated_sensors_and_values:
             self.associated_sensors_and_values[sensor] = sensor.get_value()
+
+    def reset(self):
+        for sensor in self.associated_sensors_and_values:
+            sensor.reset()
