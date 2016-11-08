@@ -7,7 +7,7 @@ class Bbcon():
         self.active_behaviors = []              # a list of all behaviors that are currently active.
         self.sensobs = []                       # a list of all sensory objects used by the bbcon
         self.motobs = []                        # a list of all motor objects used by the bbcon
-        arbitrator = Arbitrator()               # the arbitrator object that will resolve actuator requests produced by the behaviors.
+        self.arbitrator = Arbitrator()               # the arbitrator object that will resolve actuator requests produced by the behaviors.
 
     # append a newly-created behavior onto the behaviors list.
     def add_behavior(self, behavior):
@@ -32,9 +32,12 @@ class Bbcon():
 
     # Constitutes the core BBCON activity
     def run_one_timestep(self):
-        pass
 
-<<<<<<< Updated upstream
-# commenting sner
-=======
->>>>>>> Stashed changes
+        # Updates behaviours which in return updates sensobs.
+        for behaviour in self.active_behaviors():
+            behaviour.update()
+
+        motor_recommendations, flag = self.arbitrator.choose_action(self.active_behaviors)   # List of recoms, halt_request_flag.
+
+
+
