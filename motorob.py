@@ -4,7 +4,7 @@ from zumo_button import ZumoButton
 
 # Thomas er noob
 
-class motob():
+class Motob():
 
     def __init__(self):
         # A list of the motors whose settings will be determined by the motob(this class)
