@@ -43,8 +43,12 @@ class Bbcon():
         for behaviour in self.active_behaviors:
             behaviour.update()
 
-        # Lets arbitrator choose action and send recoms to motobs.
-        self.arbitrator.choose_action(self.active_behaviors)
+        # Returns recommondations of
+        motor_recoms = self.arbitrator.choose_action(self.active_behaviors)
+
+        # Update motobs
+        for motob in self.motobs:
+            motob.update(motor_recoms)
 
         # Waits for motors to run
         sleep(0.5)
