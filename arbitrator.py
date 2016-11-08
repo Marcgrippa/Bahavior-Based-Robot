@@ -16,6 +16,7 @@ class Arbitrator():
                 temp_weight = behavior.weight
                 temp_be = behavior
 
+        
         return temp_be.motor_recommendations, temp_be.halt_request
 
 
