@@ -11,6 +11,8 @@ class Bbcon():
         self.motobs = []                        # a list of all motor objects used by the bbcon
         self.arbitrator = Arbitrator(self)      # the arbitrator object that will resolve actuator requests produced by the behaviors.
 
+        self.num_timesteps = 0                  # number of timesteps done
+
 
     # append a newly-created behavior onto the behaviors list.
     def add_behavior(self, behavior):
@@ -56,3 +58,5 @@ class Bbcon():
         # Reset sensor values
         for sensor in self.sensobs:
             sensor.reset()
+
+        self.timesteps += 1
