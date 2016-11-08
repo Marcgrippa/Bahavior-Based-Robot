@@ -86,5 +86,3 @@ def calc():
         sleep(1)
         m.set_value([-1, 1], 90 * 0.00228)
 
-
-
