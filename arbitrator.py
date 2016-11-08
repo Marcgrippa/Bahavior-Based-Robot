@@ -18,6 +18,3 @@ class Arbitrator():
 
         
         return temp_be.motor_recommendations, temp_be.halt_request
-
-
-
