@@ -40,7 +40,7 @@ class Bbcon():
         :return:
         """
         # Updates behaviours which in return updates sensobs.
-        for behaviour in self.active_behaviors():
+        for behaviour in self.active_behaviors:
             behaviour.update()
 
         # Lets arbitrator choose action and send recoms to motobs.
