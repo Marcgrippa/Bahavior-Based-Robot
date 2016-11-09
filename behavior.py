@@ -36,6 +36,7 @@ class Behavior():
     def sense_and_act(self):
         return
 
+
 # stops the robot if the ultrasonic sensor detects something closer than 10cm
 class Obstruction(Behavior):
 
