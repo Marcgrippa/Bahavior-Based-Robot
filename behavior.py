@@ -2,7 +2,7 @@ from abc import abstractclassmethod
 from sensob import *
 
 
-class Behavior():
+class Behavior:
 
     def __init__(self, bbcon):
 
