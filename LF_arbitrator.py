@@ -2,7 +2,7 @@ from behavior import Behavior
 from random import *
 
 
-class arbOb:
+class Arbitrator:
     """
     Decides which behavior wins and thus gets its motor recommendations transferred to the agent’s motobs,
         which will then determine the overt action(s) of the agent.

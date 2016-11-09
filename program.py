@@ -9,8 +9,8 @@ def main():
     """
 
     bbcon = Bbcon()
-    drive_forward = DriveForward()
-    obstruction = Obstruction()
+    drive_forward = DriveForward(bbcon)
+    obstruction = Obstruction(bbcon)
 
     # Legger til behavior
     bbcon.add_behavior(drive_forward)

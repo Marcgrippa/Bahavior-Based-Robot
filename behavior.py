@@ -41,7 +41,8 @@ class Behavior:
 class Obstruction(Behavior):
 
     # add sensob to behavior
-    def __init__(self):
+    def __init__(self, bbcon):
+        super(Obstruction,self).__init__(bbcon)
         self.u_sensob = UltrasonicSensob()
         self.sensobs.append(self.u_sensob)
 
@@ -90,9 +91,9 @@ class Obstruction(Behavior):
         
 # simple class for driving forward
 class DriveForward(Behavior):
-    def __init__(self):
+    def __init__(self, bbcon):
+        super(DriveForward, self).__init__(bbcon)
         self.active_flag = True
-        self.halt_request = False
 
     def consider_activation(self):
         return
