@@ -50,6 +50,7 @@ class Obstruction(Behavior):
         if self.u_sensob.get_value() < 10:
             self.bbcon.activate_bahavior(self)
             self.active_flag = True
+            self.halt_request = True
 
     # deactive behavior if obstruction is further than 10cm
     def consider_deactivation(self):
@@ -57,6 +58,7 @@ class Obstruction(Behavior):
         if self.u_sensob.get_value() > 10:
             self.bbcon.deactive_behavior(self)
             self.active_flag = False
+            self.halt_request = False
 
     # update behavior
     def update(self):
@@ -88,6 +90,10 @@ class Obstruction(Behavior):
         
 # simple class for driving forward
 class DriveForward(Behavior):
+    def __init__(self):
+        self.active_flag = True
+        self.halt_request = False
+
     def consider_activation(self):
         return
 
