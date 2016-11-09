@@ -1,5 +1,5 @@
 from motors import Motors
-from sensob import CameraSensob
+#from sensob import CameraSensob
 
 
 class Motob:
@@ -45,5 +45,7 @@ class Motob:
                 Motors().right(dur=0.3)
             elif value == "s":
                 Motors().stop()
-            elif value == "p":
-                CameraSensob().update()
+
+        # Kan legge til oppdatering av kamera hvis vi onsker det
+        #    elif value == "p":
+        #        CameraSensob().update()
