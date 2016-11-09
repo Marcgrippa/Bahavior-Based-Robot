@@ -2,6 +2,9 @@ from abc import abstractmethod
 
 from reflectance_sensors import *
 from ultrasonic import *
+from irproximity_sensor import *
+from camera import *
+
 
 class Sensob:
     """
@@ -82,3 +85,88 @@ class UltrasonicSensob(Sensob):
         """
         return self.value
 
+
+class IRSensob(Sensob):
+    """
+    Superclass for left and right IRSenobs
+    """
+
+    def __init__(self):
+        super(IRSensob, self).__init__()
+        self.sensors.append(IRProximitySensor())
+
+    def update(self):
+        return
+
+
+class IRSensobLeft(IRSensob):
+    """
+    IR-sensor left.
+    """
+
+    def __init__(self):
+        super(IRSensobLeft, self).__init__()
+        self.value = False
+
+    def update(self):
+        """
+        Updates values
+        """
+        self.value = self.sensors[0].update()[0]
+        return self.value
+
+    def get_value(self):
+        """
+        Getter for value.
+        :return: Value
+        """
+        return self.value
+
+
+class IRSensobRight(IRSensob):
+
+    def __init__(self):
+        super(IRSensobRight, self).__init__()
+        self.value = False
+
+    def update(self):
+        """
+        Updates values
+        """
+        self.value = self.sensors[0].update()[1]
+        return self.value
+
+    def get_value(self):
+        """
+        Getter for value.
+        :return: Value
+        """
+        return self.value
+
+
+class CameraSensob(Sensob):
+    """
+    Camera sensob
+    """
+
+    def __init__(self):
+        super(CameraSensob, self).__init__()
+        self.sensor = Camera()
+        self.sensors.append(self.sensor)
+        self.value = None
+
+    def update(self):
+        """
+        Updates values
+        """
+        print('Updating camera sensor...')
+        self.sensor.update()
+        self.value = self.sensor.get_value()
+        return self.value
+
+    def get_value(self):
+        """
+        Getter for value
+        :return: Value
+        """
+        return self.value
