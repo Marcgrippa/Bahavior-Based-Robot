@@ -9,7 +9,6 @@ class Bbcon():
         self.sensobs = []                       # a list of all sensory objects used by the bbcon
         self.motobs = []                        # a list of all motor objects used by the bbcon
         self.arbitrator = Arbitrator(self)      # the arbitrator object that will resolve actuator requests produced by the behaviors.
-
         self.num_timesteps = 0                  # number of timesteps done
 
 
