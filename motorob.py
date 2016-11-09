@@ -1,35 +1,31 @@
 from motors import Motors
-from zumo_button import ZumoButton
+from sensob import CameraSensob
 
 
-# Thomas er noob
+class Motob:
+    """
 
-class Motob():
-
+    """
     def __init__(self):
-        # A list of the motors whose settings will be determined by the motob(this class)
-        self.motors = []
         # Most recent motor recommendation sent to the motob
-        self.value = None
+        self.values = []
         # Objektet Motors
         self.motor = Motors()
 
 
 
 
-    def update(self, motorvalue):
+    def update(self, motor_recommandation):
         """
         receive a new motor recommendation, load it into the value slot, and operationalize it.
         :param motorvalue:
         :return: Nothing
         """
-        self.value = motorvalue
+        self.values = motor_recommandation
+        self.operationlize()
 
-    def operationlize(self, recommendation):
+    def operationlize(self):
         """
-
-        :param recommendation: Vector with to parameters, the first
-        is one of the following
         L - Left
         R - Right
         F - Forwards
@@ -39,22 +35,15 @@ class Motob():
         Exp: rec
         :return:
         """
-        val = recommendation[0]
-        deg = recommendation[1]
 
-        if(val == 'S'):
-            self.motor.stop()
-        elif(val == 'F'):
-            self.motor.set_value([1,1])
-        elif(val == 'L'):
-            self.motor.set_value([-1,1], deg)
-        elif(val == 'R'):
-            pass
-        elif(val == 'B'):
-            self.motor.set_value([-1,-1])
-
-        pass
-
-    def runcalc(self):
-        ZumoButton().wait_for_press()
-        self.motor.set_value([-1,1], 100)
+        for value in self.values:
+            if value == "f":
+                Motors().forward()
+            elif value == "l":
+                Motors().left(dur=0.3)
+            elif value == "r":
+                Motors().right(dur=0.3)
+            elif value == "s":
+                Motors().stop()
+            elif value == "p":
+                CameraSensob().update()
