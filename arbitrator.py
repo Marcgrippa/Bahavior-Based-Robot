@@ -7,6 +7,8 @@ class Arbitrator:
 
     """
 
+
+
     def choose_action(self, behaviors):
         temp_be = None
         temp_weight = -1

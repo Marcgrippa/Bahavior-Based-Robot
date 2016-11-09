@@ -2,7 +2,7 @@ from behavior import Behavior
 from random import *
 
 
-class Arbitrator:
+class arbOb:
     """
     Decides which behavior wins and thus gets its motor recommendations transferred to the agent’s motobs,
         which will then determine the overt action(s) of the agent.
@@ -14,7 +14,7 @@ class Arbitrator:
 
     def choose_action(self) -> tuple:
         """
-        Chooses which action to take depending on the mode the arbitrator is set to.
+        Chooses which action to take depending on the mode the arbOb is set to.
         This mode is configured in the init.
         :return: tuple: (motor recommendation, boolean indiciating if it should be halted or not)
         """

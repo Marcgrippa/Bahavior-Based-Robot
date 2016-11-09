@@ -14,14 +14,14 @@ def main():
 
     # Legger til behavior
     bbcon.add_behavior(drive_forward)
-    bbcon.add_behavior(stop)
+    bbcon.add_behavior(obstruction)
 
     ZumoButton.wait_for_press()
 
     bbcon.run_one_timestep()
 
 
-if __name__ == "__main__"
+if __name__ == "__main__":
     main()
 
 
