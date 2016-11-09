@@ -1,6 +1,5 @@
 from arbitrator import Arbitrator
 from time import sleep
-from zumo_button import ZumoButton
 
 class Bbcon():
 
@@ -41,7 +40,6 @@ class Bbcon():
         Main function.
         :return:
         """
-        ZumoButton().wait_for_press()
         
         # Updates behaviours which in return updates sensobs.
         for behaviour in self.active_behaviors:
