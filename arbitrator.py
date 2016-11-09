@@ -1,10 +1,13 @@
 from behavior import Behavior
 
 
-class Arbitrator():
+class Arbitrator:
+    """
+    Bestemmer hvilken av behavior som vinner og får sin motor recommandation valgt
+
+    """
 
     def choose_action(self, behaviors):
-
         temp_be = None
         temp_weight = -1
 
