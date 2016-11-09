@@ -1,9 +1,9 @@
 from abc import abstractmethod
 
-from sensors.camera import *
-from sensors.irproximity_sensor import *
-from sensors.reflectance_sensors import *
-from sensors.ultrasonic_sensor import *
+from camera import *
+from irproximity_sensor import *
+from reflectance_sensors import *
+from ultrasonic_sensor import *
 
 
 class Sensob:
