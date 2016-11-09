@@ -41,7 +41,7 @@ class Behavior:
 class Obstruction(Behavior):
 
     # add sensob to behavior
-    def __index__(self):
+    def __init__(self):
         self.u_sensob = UltrasonicSensob()
         self.sensobs.append(self.u_sensob)
 
@@ -84,3 +84,21 @@ class Obstruction(Behavior):
         self.motor_recommendations = ["s"]
         self.priority = 1
         self.match_degree = 1
+
+        
+# simple class for driving forward
+class DriveForward(Behavior):
+    def consider_activation(self):
+        return
+
+    def consider_deactivation(self):
+        return
+
+    def update(self):
+        self.sense_and_act()
+        self.weight = self.priority * self.match_degree
+
+    def sense_and_act(self):
+        self.motor_recommendations = ["f"]
+        self.priority = 0.5
+        self.match_degree = 0.5
