@@ -46,6 +46,7 @@ class Bbcon:
 
         # Returns recommondations of
         motor_recoms = self.arbOb.choose_action(self.active_behaviors)
+        print("motor req: ", motor_recoms)
 
         # Update motobs
         for motob in self.motobs:

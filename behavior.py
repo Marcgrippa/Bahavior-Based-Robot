@@ -96,16 +96,19 @@ class Obstruction(Behavior):
 class DriveForward(Behavior):
     def __init__(self, bbcon):
         super(DriveForward, self).__init__(bbcon)
+        print("DriveForward object crated")
         self.active_flag = True
 
     def consider_activation(self):
         if self.active_flag:
+            print("Activated DriveForward")
             self.bbcon.activate_bahavior(self)
 
     def consider_deactivation(self):
         return
 
     def update(self):
+        print("Updating DriveForward")
         self.consider_activation()
         self.sense_and_act()
         self.weight = self.priority * self.match_degree
