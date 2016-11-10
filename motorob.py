@@ -47,11 +47,11 @@ class Motob:
 
         for value in self.values:
             if value == "f":
-                Motors().set_value([self.speedDic[20], self.speedDic[20]])
+                Motors().set_value([self.speedDic[50], self.speedDic[50]])
             elif value == "l":
-                Motors().set_value([ -1 * self.speedDic[75], self.speedDic[75]], dur=self.turn_n_degrees(10))
+                Motors().set_value([ -1 * self.speedDic[50], self.speedDic[50]])
             elif value == "r":
-                Motors().set_value([self.speedDic[75], -1 * self.speedDic[75]], dur=self.turn_n_degrees(10) )
+                Motors().set_value([self.speedDic[50], -1 * self.speedDic[50]])
             elif value == "s":
                 Motors().stop()
 
