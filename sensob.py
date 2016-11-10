@@ -35,7 +35,7 @@ class Sensob:
 
 class ReflectanceSensob(Sensob):
     """
-    Left reflectance sensor.
+    Reflectance sensob
     """
 
     def __init__(self):
@@ -53,10 +53,10 @@ class ReflectanceSensob(Sensob):
 
     def get_value(self):
         """
-        Getter for value.
-        :return: Value
+        :return: List of values, [left, midleft, midright right]
         """
-        return self.value
+        return [self.value[0], self.value[2], self.value[3], self.value[-1]]
+
 
 
 class UltrasonicSensob(Sensob):
