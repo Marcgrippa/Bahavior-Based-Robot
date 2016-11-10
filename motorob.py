@@ -14,8 +14,11 @@ class Motob:
         self.speedDic = {100: 1,
                          75 : 0.75,
                          50 : 0.5,
-                         25 : 0.25
-
+                         40 : 0.4,
+                         30 : 0.3,
+                         20 : 0.2,
+                         10 : 0.1,
+                         0  : 0.0
         }
 
 
@@ -44,7 +47,7 @@ class Motob:
 
         for value in self.values:
             if value == "f":
-                Motors().set_value([self.speedDic[50] + 0.02, self.speedDic[50]])
+                Motors().set_value([self.speedDic[20], self.speedDic[20]])
             elif value == "l":
                 Motors().set_value([ -1 * self.speedDic[75], self.speedDic[75]], dur=self.turn_n_degrees(10))
             elif value == "r":
