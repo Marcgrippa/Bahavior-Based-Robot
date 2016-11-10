@@ -138,7 +138,6 @@ class FollowLine(Behavior):
             if value < 0.5:
                 self.bbcon.activate_bahavior(self)
                 print("Activate FollowLine")
-                self.bbcon.active_behaviors()
                 self.active_flag = True
 
         #else
