@@ -124,3 +124,51 @@ class DriveForward(Behavior):
         self.match_degree = 0.5
 
 
+class FollowLine(Behavior):
+
+    def __init__(self, bbcon):
+        super(FollowLine, self).__init__(bbcon)
+        self.r_sensob = ReflectanceSensob()
+        self.sensobs.append(self.r_sensob)
+
+    def consider_activation(self):
+
+        for value in self.r_sensob.update():
+            if value < 0.5:
+                self.bbcon.active_behaviors()
+                self.active_flag = True
+
+        #else
+        self.weight = 0
+        self.bbcon.deactive_behavior(self)
+        self.active_flag = False
+
+    def consider_deactivation(self):
+        self.consider_activation()
+
+    def update(self):
+
+        self.consider_activation()
+        self.sense_and_act()
+        self.weight = self.priority * self.match_degree
+
+    def sense_and_act(self):
+        #[left_sensor, midleft_sensor, midright_sensor, right_sensor]
+
+        if self.r_sensob.get_value()[0] < 0.5:
+            self.motor_recommendations = ["l"]
+            self.match_degree = 0.9
+
+        elif self.r_sensob.get_value()[3] < 0.5:
+            self.motor_recommendations = ["r"]
+            self.match_degree = 0.9
+
+        elif self.r_sensob.get_value()[1] < 0.5:
+            self.motor_recommendations = ["f"]
+            self.match_degree = 0.2
+
+        else:
+            self.motor_recommendations = ["f"]
+            self.match_degree = 0.5
+
+        self.priority = 0.5
