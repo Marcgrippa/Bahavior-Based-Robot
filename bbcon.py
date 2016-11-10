@@ -8,7 +8,7 @@ class Bbcon:
         self.active_behaviors = []              # a list of all behaviors that are currently active.
         self.sensobs = []                       # a list of all sensory objects used by the bbcon
         self.motobs = []                        # a list of all motor objects used by the bbcon
-        self.arbOb = Arbitrator(self)               # the arbitrator object that will resolve actuator requests produced by the behaviors.
+        self.arbOb = Arbitrator()               # the arbitrator object that will resolve actuator requests produced by the behaviors.
         self.num_timesteps = 0                  # number of timesteps done
 
 
