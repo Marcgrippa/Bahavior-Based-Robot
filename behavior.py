@@ -124,3 +124,87 @@ class DriveForward(Behavior):
         self.match_degree = 0.5
 
 
+class Camera(Behavior):
+    """
+    Behavior for kameraet. Skal kunne oppdatere kamera, ta bilde etc
+    """
+
+    def __init__(self, bbcon):
+        """
+        Legger til Kamera sensob i listen over alle sensorene
+        """
+        super(Camera, self).__init__(bbcon)
+        self.sensobs.append(CameraSensob())
+
+    def consider_activation(self) -> bool:
+        """
+        Bestemmer når kamera skal bli aktivtert
+        """
+        pass
+
+    def consider_deactivation(self) -> bool:
+        """
+        Bestemmer når kamera ikke skal være aktivert
+        """
+        return not self.consider_activation()
+
+    def update(self):
+        """
+        Oppdaterer kameraet
+        """
+
+        # Oppdaterer "active_flag" i henhold til de parameterene som er satt i consider_activation
+        self.active_flag = self.consider_activation()
+
+        # Tester om kamerat er aktiv, hvis ikke vil den sette weight til 0
+        if not self.active_flag:
+            self.weight = 0
+            return
+
+    def sense_and_act(self):
+        """
+
+        :return:
+        """
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
