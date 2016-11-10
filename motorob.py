@@ -11,18 +11,7 @@ class Motob:
         self.values = []
         # Objektet Motors
         self.motor = Motors()
-        self.speedDic = {100: 1,
-                         75 : 0.75,
-                         50 : 0.5,
-                         40 : 0.4,
-                         30 : 0.3,
-                         20 : 0.2,
-                         10 : 0.1,
-                         0  : 0.0
-        }
-
-
-
+        self.speedDic = {100: 1, 75: 0.75, 50: 0.5, 40: 0.4, 30: 0.3, 20: 0.2, 10: 0.1, 0: 0.0}
 
     def update(self, motor_recommandation):
         """
@@ -47,11 +36,11 @@ class Motob:
 
         for value in self.values:
             if value == "f":
-                Motors().set_value([self.speedDic[50], self.speedDic[50]])
+                Motors().set_value([self.speedDic[25], self.speedDic[25]])
             elif value == "l":
-                Motors().set_value([ -1 * self.speedDic[50], self.speedDic[50]])
+                Motors().set_value([ -1 * self.speedDic[25], self.speedDic[25]])
             elif value == "r":
-                Motors().set_value([self.speedDic[50], -1 * self.speedDic[50]])
+                Motors().set_value([self.speedDic[25], -1 * self.speedDic[25]])
             elif value == "s":
                 Motors().stop()
 
@@ -59,10 +48,11 @@ class Motob:
         #    elif value == "p":
         #        CameraSensob().update()
 
-    def turn_n_degrees(self, deg):
+    @staticmethod
+    def turn_n_degrees(deg):
         """
         Takes in the desired turn degree and returns how long the motors have to turn at full speed.
         :param deg: Desired turn degree.
         :return: Time.
         """
-        return 0.028*deg
+        return 0.0028 * deg
