@@ -48,7 +48,9 @@ class Obstruction(Behavior):
 
     # activate behavior if obstruction is closer than 10cm
     def consider_activation(self):
+        print("UltraSensob: ", self.u_sensob.get_value())
         if self.u_sensob.get_value() < 10:
+            print("UltraSensob activated")
             self.bbcon.activate_bahavior(self)
             self.active_flag = True
             self.halt_request = True
@@ -57,6 +59,7 @@ class Obstruction(Behavior):
     def consider_deactivation(self):
 
         if self.u_sensob.get_value() > 10:
+            print("UltraSensob deactivated")
             self.bbcon.deactive_behavior(self)
             self.active_flag = False
             self.halt_request = False
