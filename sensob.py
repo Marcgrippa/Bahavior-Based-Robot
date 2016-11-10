@@ -42,14 +42,17 @@ class ReflectanceSensob(Sensob):
         super(ReflectanceSensob, self).__init__()
         self.sensor = ReflectanceSensors()
         self.sensors.append(self.sensor)
+        print("Reflectance sensob created.")
 
     def update(self):
         """
         Updates values.
-        :return: Sensors value.
+        :return: List of values, [left, midleft, midright right]
         """
         self.sensor.update()
         self.value = self.sensor.get_value()
+        print('ReflectanceSensob updated')
+        return [self.value[0], self.value[2], self.value[3], self.value[-1]]
 
     def get_value(self):
         """
