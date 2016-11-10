@@ -119,7 +119,7 @@ class DriveForward(Behavior):
         self.weight = self.priority * self.match_degree
 
     def sense_and_act(self):
-        self.motor_recommendations = ["f", "r", "f", "r"]
+        self.motor_recommendations = ["f"]
         self.priority = 0.5
         self.match_degree = 0.5
 

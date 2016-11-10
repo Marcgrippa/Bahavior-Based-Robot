@@ -11,6 +11,12 @@ class Motob:
         self.values = []
         # Objektet Motors
         self.motor = Motors()
+        self.speedDic = {100: 1,
+                         75 : 0.75,
+                         50 : 0.5,
+                         25 : 0.25
+
+        }
 
 
 
@@ -35,14 +41,14 @@ class Motob:
         Exp: rec
         :return:
         """
-        print(self.values)
+
         for value in self.values:
             if value == "f":
-                Motors().set_value([1,1])
+                Motors().set_value([self.speedDic[100], self.speedDic[100]])
             elif value == "l":
-                Motors().set_value([-1,1], dur=self.turn_n_degrees(90) )
+                Motors().set_value([ -1 * self.speedDic[75], self.speedDic[75]], dur=self.turn_n_degrees(10))
             elif value == "r":
-                Motors().set_value([1, -1], dur=self.turn_n_degrees(90))
+                Motors().set_value([self.speedDic[75], -1 * self.speedDic[75]], dur=self.turn_n_degrees(10) )
             elif value == "s":
                 Motors().stop()
 
