@@ -8,7 +8,7 @@ class Behavior:
 
         self.bbcon = bbcon                                      # pointer to the controller that uses this behavior.
         self.sensobs = []                                       # a list of all sensobs that this behavior uses.
-        self.motor_recommendations = ["none"]                         # a list of recommendations, one per motob, that this behavior provides to the arbitrator.
+        self.motor_recommendations = ["none"]                   # a list of recommendations, one per motob, that this behavior provides to the arbitrator.
         self.active_flag = False                                # boolean variable indicating that the behavior is currently active or inactive.
         self.halt_request = False                               # behaviors can request the robot to completely halt activity (and thus end the run).
         self.priority = 0                                       # a static, pre-defined value indicating the importance of this behavior.
@@ -164,3 +164,57 @@ class FollowLine(Behavior):
             self.match_degree = 0.5
 
         self.priority = 0.5
+
+
+class TallObstructions(Behavior):
+
+    def __init__(self, bbcon):
+        super(TallObstructions, self).__init__(bbcon)
+        self.l_IR_sensob = IRSensobLeft()
+        self.r_IR_sensob = IRSensobRight()
+
+        self.sensobs.append(self.l_IR_sensob)
+        self.sensobs.append(self.r_IR_sensob)
+
+    def consider_activation(self):
+
+        if self.l_IR_sensob.get_value() or self.r_IR_sensob.get_value():
+            self.bbcon.activate_bahavior(self)
+            self.active_flag = True
+
+
+    def consider_deactivation(self):
+
+        if not self.l_IR_sensob.get_value() and self.r_IR_sensob.get_value():
+            self.bbcon.deactive_behavior(self)
+            self.active_flag = False
+            self.weight = 0
+
+    def update(self):
+
+        if self.active_flag:
+            self.consider_deactivation()
+
+        else:
+            self.consider_activation()
+
+        self.sense_and_act()
+        self.weight = self.priority * self.match_degree
+
+    def sense_and_act(self):
+
+        self.match_degree = 0.01
+
+        if self.sensobs[0].update() and self.sensobs[1].update():
+            self.motor_recommendations = ["f"]
+            self.match_degree = 0.2
+
+        elif self.sensobs[0].update():
+            self.motor_recommendations = ["l"]
+            self.match_degree = 0.9
+
+        elif self.sensobs[1].update():
+            self.motor_recommendations = ["r"]
+            self.match_degree = 0.9
+
+        self.priority = 0.4
