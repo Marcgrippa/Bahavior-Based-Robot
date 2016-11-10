@@ -101,7 +101,7 @@ class Obstruction(Behavior):
 class DriveForward(Behavior):
     def __init__(self, bbcon):
         super(DriveForward, self).__init__(bbcon)
-        print("DriveForward object crated")
+        print("DriveForward object created")
         self.active_flag = True
 
     def consider_activation(self):
@@ -128,6 +128,7 @@ class FollowLine(Behavior):
 
     def __init__(self, bbcon):
         super(FollowLine, self).__init__(bbcon)
+        print("FollowLine Obj created")
         self.r_sensob = ReflectanceSensob()
         self.sensobs.append(self.r_sensob)
 
@@ -136,10 +137,13 @@ class FollowLine(Behavior):
         for value in self.r_sensob.update():
             if value < 0.5:
                 self.bbcon.activate_bahavior(self)
+                print("Activate FollowLine")
+                self.bbcon.active_behaviors()
                 self.active_flag = True
 
         #else
         self.weight = 0
+        print("Deavtivate FollowLine")
         self.bbcon.deactive_behavior(self)
         self.active_flag = False
 
@@ -147,6 +151,7 @@ class FollowLine(Behavior):
         self.consider_activation()
 
     def update(self):
+        print("Updating FollowLine")
 
         self.consider_activation()
         self.sense_and_act()
@@ -156,18 +161,22 @@ class FollowLine(Behavior):
         #[left_sensor, midleft_sensor, midright_sensor, right_sensor]
 
         if self.r_sensob.get_value()[0] < 0.5:
+            print("Left sensor activated")
             self.motor_recommendations = ["l"]
             self.match_degree = 0.9
 
         elif self.r_sensob.get_value()[3] < 0.5:
+            print("Right sensor activated")
             self.motor_recommendations = ["r"]
             self.match_degree = 0.9
 
         elif self.r_sensob.get_value()[1] < 0.5:
+            print("MidLeft sensor activated")
             self.motor_recommendations = ["f"]
             self.match_degree = 0.2
 
         else:
+            print("MidRight sensor activated")
             self.motor_recommendations = ["f"]
             self.match_degree = 0.5
 
