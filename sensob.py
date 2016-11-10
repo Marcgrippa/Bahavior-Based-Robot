@@ -68,14 +68,16 @@ class UltrasonicSensob(Sensob):
         super(UltrasonicSensob, self).__init__()
         self.sensor = Ultrasonic()
         self.sensors.append(self.sensor)
+        print("US-sensob created.")
 
     def update(self):
         """
         Updates ultrasonic values
         """
-        print('Updating ultrasonic sensor...')
+        print('US updating...')
         self.sensor.update()
         self.value = self.sensor.get_value()
+        print('US updated')
         return self.value
 
     def get_value(self):
