@@ -43,6 +43,7 @@ class Obstruction(Behavior):
     # add sensob to behavior
     def __init__(self, bbcon):
         super(Obstruction,self).__init__(bbcon)
+        print("Object Obstr created")
         self.u_sensob = UltrasonicSensob()
         self.sensobs.append(self.u_sensob)
 
@@ -66,20 +67,24 @@ class Obstruction(Behavior):
 
     # update behavior
     def update(self):
+        print("Obstr-update")
 
         for sensor in self.sensobs:
             sensor.update()
 
         # if active, check if behavior should be deactivated
         if self.active_flag:
+            print("Deactivating Obstr")
             self.consider_deactivation()
 
         # if deactivated, check if behavior should be activated
         elif not self.active_flag:
+            print("Activate Obstr")
             self.consider_activation()
 
         # set weight = 0 if deactivated
         if not self.active_flag:
+            print("Setting value to 0 - Obstr")
             self.weight = 0
             return
 
@@ -114,7 +119,7 @@ class DriveForward(Behavior):
         self.weight = self.priority * self.match_degree
 
     def sense_and_act(self):
-        self.motor_recommendations = ["f"]
+        self.motor_recommendations = ["f", "r", "f", "r"]
         self.priority = 0.5
         self.match_degree = 0.5
 
