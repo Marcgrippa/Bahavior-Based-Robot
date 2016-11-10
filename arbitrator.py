@@ -8,8 +8,8 @@ class Arbitrator:
     """
 
     def choose_action(self, behaviors):
-        temp_be = None
-        temp_weight = -1
+        winning_behavior = None
+        max_weight = -1
 
         # Choosing a "winning" behavior and returns that behavors motor recommendations and halt flag
         for behavior in behaviors:
@@ -19,9 +19,9 @@ class Arbitrator:
                 return behavior.motor_recommendations
 
             # Choose a winning behavior
-            elif behavior.weight > temp_weight:
-                temp_weight = behavior.weight
-                temp_be = behavior
+            elif behavior.weight > max_weight:
+                max_weight = behavior.weight
+                winning_behavior = behavior
 
-        # Winning behaviors motor recommendations gets sendt back to Bbcon
-        return temp_be.motor_recommendations
+        # Winning behaviors motor recommendations gets sent back to Bbcon
+        return winning_behavior.motor_recommendations
