@@ -1,5 +1,6 @@
 from arbitrator import Arbitrator
 from time import sleep
+from motorob import Motob
 
 class Bbcon:
 
@@ -7,7 +8,7 @@ class Bbcon:
         self.behaviors = []                     # a list of all the behavior objects used by the bbcon
         self.active_behaviors = []              # a list of all behaviors that are currently active.
         self.sensobs = []                       # a list of all sensory objects used by the bbcon
-        self.motobs = []                        # a list of all motor objects used by the bbcon
+        self.motobs = Motob()                   # a list of all motor objects used by the bbcon
         self.arbOb = Arbitrator()               # the arbitrator object that will resolve actuator requests produced by the behaviors.
         self.num_timesteps = 0                  # number of timesteps done
 
@@ -49,8 +50,7 @@ class Bbcon:
         print("motor req: ", motor_recoms)
 
         # Update motobs
-        for motob in self.motobs:
-            motob.update(motor_recoms)
+        self.motobs.update(motor_recoms)
 
         # Waits for motors to run
         sleep(0.5)

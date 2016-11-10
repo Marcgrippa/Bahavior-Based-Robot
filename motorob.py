@@ -35,7 +35,7 @@ class Motob:
         Exp: rec
         :return:
         """
-
+        print(self.values)
         for value in self.values:
             if value == "f":
                 Motors().forward()
