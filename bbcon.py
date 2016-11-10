@@ -59,4 +59,4 @@ class Bbcon:
         for sensor in self.sensobs:
             sensor.reset()
 
-        self.timesteps += 1
+        self.num_timesteps += 1
