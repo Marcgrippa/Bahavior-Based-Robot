@@ -11,7 +11,7 @@ class Motob:
         self.values = []
         # Objektet Motors
         self.motor = Motors()
-        self.speedDic = {100: 1, 75: 0.75, 50: 0.5, 40: 0.4, 30: 0.3, 20: 0.2, 10: 0.1, 0: 0.0}
+        self.speedDic = {100: 1, 75: 0.75, 50: 0.5, 40: 0.4, 30: 0.3, 25: 0.25, 20: 0.2, 10: 0.1, 0: 0.0}
 
     def update(self, motor_recommandation):
         """
@@ -36,13 +36,19 @@ class Motob:
 
         for value in self.values:
             if value == "f":
-                Motors().set_value([self.speedDic[25], self.speedDic[25]])
+                print("Forward")
+                Motors().set_value([self.speedDic[30], self.speedDic[30]])
             elif value == "l":
-                Motors().set_value([ -1 * self.speedDic[25], self.speedDic[25]])
+                print("Left")
+                Motors().set_value([ -1 * self.speedDic[30], self.speedDic[30]])
             elif value == "r":
-                Motors().set_value([self.speedDic[25], -1 * self.speedDic[25]])
+                print("Right")
+                Motors().set_value([self.speedDic[30], -1 * self.speedDic[30]])
             elif value == "s":
+                print("Stop")
                 Motors().stop()
+            elif value == "none":
+                continue
 
         # Kan legge til oppdatering av kamera hvis vi onsker det
         #    elif value == "p":

@@ -23,5 +23,9 @@ class Arbitrator:
                 max_weight = behavior.weight
                 winning_behavior = behavior
 
+
         # Winning behaviors motor recommendations gets sent back to Bbcon
+
+        if winning_behavior is None:
+            return ["f"]
         return winning_behavior.motor_recommendations
