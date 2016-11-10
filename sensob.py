@@ -51,7 +51,7 @@ class ReflectanceSensob(Sensob):
         """
         self.sensor.update()
         self.value = self.sensor.get_value()
-        print('ReflectanceSensob updated')
+        print('Reflectance values: ' + str(self.value))
         return [self.value[0], self.value[2], self.value[3], self.value[-1]]
 
     def get_value(self):
@@ -59,7 +59,6 @@ class ReflectanceSensob(Sensob):
         :return: List of values, [left, midleft, midright right]
         """
         return [self.value[0], self.value[2], self.value[3], self.value[-1]]
-
 
 
 class UltrasonicSensob(Sensob):
@@ -71,16 +70,16 @@ class UltrasonicSensob(Sensob):
         super(UltrasonicSensob, self).__init__()
         self.sensor = Ultrasonic()
         self.sensors.append(self.sensor)
-        print("US-sensob created.")
+        # print("US-sensob created.")
 
     def update(self):
         """
         Updates ultrasonic values
         """
-        print('US updating...')
+        # print('US updating...')
         self.sensor.update()
         self.value = self.sensor.get_value()
-        print('US updated')
+        # print('US updated')
         return self.value
 
     def get_value(self):
