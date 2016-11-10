@@ -160,7 +160,12 @@ class FollowLine(Behavior):
     def sense_and_act(self):
         #[left_sensor, midleft_sensor, midright_sensor, right_sensor]
 
-        if self.r_sensob.get_value()[0] < 0.5:
+        if self.r_sensob.get_value()[1] < 0.5 and self.r_sensob.get_value()[2] < 0.5:
+            print("Mid sensors activated")
+            self.motor_recommendations = ["f"]
+            self.match_degree = 0.5
+
+        elif self.r_sensob.get_value()[0] < 0.5:
             print("Left sensor activated")
             self.motor_recommendations = ["l"]
             self.match_degree = 0.9
@@ -170,14 +175,9 @@ class FollowLine(Behavior):
             self.motor_recommendations = ["r"]
             self.match_degree = 0.9
 
-        elif self.r_sensob.get_value()[1] < 0.5:
-            print("MidLeft sensor activated")
+        else:
+            print("else sensors activated")
             self.motor_recommendations = ["f"]
             self.match_degree = 0.2
-
-        else:
-            print("MidRight sensor activated")
-            self.motor_recommendations = ["f"]
-            self.match_degree = 0.5
 
         self.priority = 0.5
