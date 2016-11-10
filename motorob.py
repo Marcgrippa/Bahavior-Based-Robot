@@ -38,14 +38,22 @@ class Motob:
         print(self.values)
         for value in self.values:
             if value == "f":
-                Motors().forward()
+                Motors().set_value([1,1])
             elif value == "l":
-                Motors().left(dur=0.3)
+                Motors().set_value([-1,1], dur=self.turn_n_degrees(90) )
             elif value == "r":
-                Motors().right(dur=0.3)
+                Motors().set_value([1, -1], dur=self.turn_n_degrees(90))
             elif value == "s":
                 Motors().stop()
 
         # Kan legge til oppdatering av kamera hvis vi onsker det
         #    elif value == "p":
         #        CameraSensob().update()
+
+    def turn_n_degrees(self, deg):
+        """
+        Takes in the desired turn degree and returns how long the motors have to turn at full speed.
+        :param deg: Desired turn degree.
+        :return: Time.
+        """
+        return 0.028*deg

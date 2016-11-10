@@ -124,10 +124,3 @@ class DriveForward(Behavior):
         self.match_degree = 0.5
 
 
-def turn_n_degrees(deg):
-    """
-    Takes in the desired turn degree and returns how long the motors have to turn at full speed.
-    :param deg: Desired turn degree.
-    :return: Time.
-    """
-    return 0.028*deg
