@@ -135,7 +135,7 @@ class FollowLine(Behavior):
 
         for value in self.r_sensob.update():
             if value < 0.5:
-                self.bbcon.active_behaviors()
+                self.bbcon.activate_bahavior(self)
                 self.active_flag = True
 
         #else
