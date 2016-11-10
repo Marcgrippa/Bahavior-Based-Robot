@@ -96,12 +96,14 @@ class DriveForward(Behavior):
         self.active_flag = True
 
     def consider_activation(self):
-        return
+        if self.active_flag:
+            self.bbcon.activate_bahavior(self)
 
     def consider_deactivation(self):
         return
 
     def update(self):
+        self.consider_activation()
         self.sense_and_act()
         self.weight = self.priority * self.match_degree
 

@@ -41,7 +41,7 @@ class Bbcon:
         """
         
         # Updates behaviours which in return updates sensobs.
-        for behaviour in self.active_behaviors:
+        for behaviour in self.behaviors:
             behaviour.update()
 
         # Returns recommondations of
