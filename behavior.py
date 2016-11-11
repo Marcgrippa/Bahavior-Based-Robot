@@ -207,11 +207,7 @@ class TallObstructions(Behavior):
         self.l_IR_sensob.update()
         self.r_IR_sensob.update()
 
-        if self.l_IR_sensob.get_value() and self.r_IR_sensob.get_value():
-            self.motor_recommendations = ["b"]
-            self.match_degree = 0.9
-
-        elif self.r_IR_sensob.get_value():
+        if self.r_IR_sensob.get_value():
             self.motor_recommendations = ["l"]
             self.match_degree = 0.8
 
@@ -220,3 +216,63 @@ class TallObstructions(Behavior):
             self.match_degree = 0.8
 
         self.priority = 0.4
+
+class ReversePhoto(Behavior):
+
+    def __init__(self, bbcon):
+        super(ReversePhoto, self).__init__(bbcon)
+        self.c_sensob = CameraSensob()
+        self.sensobs.append(self.c_sensob)
+        self.getSensobs()
+
+    def getSensobs(self):
+
+        self.l_IR_sensob = None
+        self.r_IR_sensob = None
+
+        for sensob in self.sensobs:
+            if sensob.isinstance(IRSensobLeft):
+                self.l_IR_sensob = sensob
+
+            if sensob.insert(IRSensobRight):
+                self.r_IR_sensob = sensob
+
+        if self.l_IR_sensob is None or self.r_IR_sensob is None:
+            self.l_IR_sensob = IRSensobLeft()
+            self.r_IR_sensob = IRSensobRight()
+            self.sensobs.append(self.l_IR_sensob)
+            self.sensobs.append(self.r_IR_sensob)
+
+    def consider_activation(self):
+
+        if self.l_IR_sensob and self.r_IR_sensob:
+            self.bbcon.activate_bahavior(self)
+            self.active_flag = True
+            self.halt_request = True
+
+    def consider_deactivation(self):
+
+        if not self.l_IR_sensob or not self.r_IR_sensob:
+            self.bbcon.deactive_behavior(self)
+            self.active_flag = False
+            self.halt_request = False
+            self.weight = 0
+
+    def update(self):
+
+        if self.active_flag:
+            self.consider_deactivation()
+        else:
+            self.consider_activation()
+
+        self.sense_and_act()
+        self.weight = self.priority * self.match_degree
+
+    def sense_and_act(self):
+
+        if self.l_IR_sensob and self.r_IR_sensob:
+            self.motor_recommendations = ["b"]
+            self.match_degree = 0.9
+            self.c_sensob.update()
+
+        self.priority = 0.5
