@@ -153,11 +153,11 @@ class FollowLine(Behavior):
 
         elif self.r_sensob.get_value()[0] < self.treshold:
             self.motor_recommendations = ["l"]
-            self.match_degree = 0.9
+            self.match_degree = 0.8
 
         elif self.r_sensob.get_value()[5] < self.treshold:
             self.motor_recommendations = ["r"]
-            self.match_degree = 0.9
+            self.match_degree = 0.8
 
         else:
             self.motor_recommendations = ["f"]
