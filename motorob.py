@@ -12,6 +12,7 @@ class Motob:
         # Objektet Motors
         self.motor = Motors()
         self.speedDic = {100: 1, 75: 0.75, 50: 0.5, 40: 0.4, 30: 0.3, 25: 0.25, 20: 0.2, 10: 0.1, 0: 0.0}
+        self.can_take_photo = False
 
     def update(self, motor_recommandation):
         """
@@ -58,6 +59,7 @@ class Motob:
             elif value == "b":
                 print("Backwards")
                 Motors().backward(0.9, 0.25)
+                self.can_take_photo = True
             elif value == 'p':
                 print('CHEEEEESE!')
                 CameraSensob().update()
