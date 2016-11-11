@@ -1,5 +1,6 @@
 from abc import abstractclassmethod
 from sensob import *
+from imager2 import Image
 
 
 class Behavior:
@@ -217,24 +218,23 @@ class TallObstructions(Behavior):
 
         self.priority = 0.4
 
-class ReversePhoto(Behavior):
+
+class Reverse(Behavior):
 
     def __init__(self, bbcon):
-        super(ReversePhoto, self).__init__(bbcon)
-        self.c_sensob = CameraSensob()
-        self.sensobs.append(self.c_sensob)
-        self.getSensobs()
+        super(Reverse, self).__init__(bbcon)
+        self.get_sensobs()
 
-    def getSensobs(self):
+    def get_sensobs(self):
 
         self.l_IR_sensob = None
         self.r_IR_sensob = None
 
         for sensob in self.sensobs:
-            if sensob.isinstance(IRSensobLeft):
+            if isinstance(sensob, IRSensobLeft()):
                 self.l_IR_sensob = sensob
 
-            if sensob.insert(IRSensobRight):
+            if isinstance(sensob, IRSensobRight()):
                 self.r_IR_sensob = sensob
 
         if self.l_IR_sensob is None or self.r_IR_sensob is None:
@@ -262,6 +262,7 @@ class ReversePhoto(Behavior):
 
         if self.active_flag:
             self.consider_deactivation()
+
         else:
             self.consider_activation()
 
@@ -273,6 +274,46 @@ class ReversePhoto(Behavior):
         if self.l_IR_sensob and self.r_IR_sensob:
             self.motor_recommendations = ["b"]
             self.match_degree = 0.9
-            self.c_sensob.update()
 
         self.priority = 0.5
+
+
+class Photo(Behavior):
+    def __init__(self, bbcon):
+        super(Photo, self).__init__(bbcon)
+        self.c_sensob = CameraSensob()
+        self.sensobs.append(self.c_sensob)
+
+    def consider_activation(self):
+
+        if self.bbcon.can_take_photo:
+            self.bbcon.activate_bahavior(self)
+            self.halt_request = True
+            self.active_flag = True
+
+    def consider_deactivation(self):
+
+        if not self.bbcon.can_take_photo:
+            self.bbcon.deactive_behavior(self)
+            self.halt_request = False
+            self.active_flag = False
+
+    def update(self):
+
+        if self.active_flag:
+            self.consider_deactivation()
+
+        else:
+            self.consider_deactivation()
+
+        self.sense_and_act()
+        self.weight = self.priority * self.match_degree
+
+    def sense_and_act(self):
+
+        if self.bbcon.can_take_photo:
+            image = self.c_sensob.update()
+            img = Image(image = image)
+            img.dump_image('/')
+            self.bbcon.photo_taken()
+            

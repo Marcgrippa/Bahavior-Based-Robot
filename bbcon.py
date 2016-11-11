@@ -1,6 +1,7 @@
 from arbitrator import Arbitrator
 from time import sleep
 from motorob import Motob
+from behavior import Photo
 
 class Bbcon:
 
@@ -11,6 +12,7 @@ class Bbcon:
         self.motobs = Motob()                   # a list of all motor objects used by the bbcon
         self.arbitrator = Arbitrator()          # the arbitrator object that will resolve actuator requests produced by the behaviors.
         self.num_timesteps = 0                  # number of timesteps done
+        self.can_take_photo = False
 
 
     # append a newly-created behavior onto the behaviors list.
@@ -34,6 +36,9 @@ class Bbcon:
         if behavior in self.active_behaviors:
             self.active_behaviors.remove(behavior)
 
+    def photo_taken(self):
+        self.can_take_photo = False
+
     # Constitutes the core BBCON activity
     def run_one_timestep(self):
         """
@@ -50,6 +55,9 @@ class Bbcon:
 
         # Update motobs
         self.motobs.update(motor_recoms)
+
+        if self.motobs.can_take_photo:
+            self.can_take_photo = True
 
         # Waits for motors to run
         sleep(0.5)

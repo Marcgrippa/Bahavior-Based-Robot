@@ -13,12 +13,14 @@ def main():
     follow_line = FollowLine(bbcon)
     obstruction = Obstruction(bbcon)
     fuck_offers = TallObstructions(bbcon)
+    ninja_geir = Reverse(bbcon)
 
     # Legger til behavior
     #bbcon.add_behavior(drive_forward)
     bbcon.add_behavior(follow_line)
     bbcon.add_behavior(obstruction)
     bbcon.add_behavior(fuck_offers)
+    bbcon.add_behavior(ninja_geir)
 
     ZumoButton().wait_for_press()
 
