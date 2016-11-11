@@ -47,6 +47,9 @@ class Motob:
             elif value == "s":
                 print("Stop")
                 Motors().stop()
+            elif value == "b":
+                print("Backwards")
+                Motors().backward(0.9, 0.25)
             elif value == "none":
                 continue
 

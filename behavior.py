@@ -204,16 +204,18 @@ class TallObstructions(Behavior):
     def sense_and_act(self):
 
         self.match_degree = 0.01
+        self.l_IR_sensob.update()
+        self.r_IR_sensob.update()
 
-        if self.sensobs[0].update() and self.sensobs[1].update():
-            self.motor_recommendations = ["f"]
+        if self.l_IR_sensob.get_value() and self.r_IR_sensob.get_value():
+            self.motor_recommendations = ["b"]
             self.match_degree = 0.2
 
-        elif self.sensobs[0].update():
+        elif self.r_IR_sensob.get_value():
             self.motor_recommendations = ["l"]
             self.match_degree = 0.9
 
-        elif self.sensobs[1].update():
+        elif self.l_IR_sensob.get_value():
             self.motor_recommendations = ["r"]
             self.match_degree = 0.9
 
