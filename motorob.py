@@ -1,5 +1,5 @@
 from motors import Motors
-#from sensob import CameraSensob
+from sensob import CameraSensob
 
 
 class Motob:
@@ -29,6 +29,8 @@ class Motob:
         F - Forwards
         S - Stop
         B - Backwards
+        FL - Turning left while driving forward
+        FR - Turning right while driving forward
         The second vector elemnt is the degree og turning.
         Exp: rec
         :return:
@@ -44,18 +46,24 @@ class Motob:
             elif value == "r":
                 print("Right")
                 Motors().set_value([self.speedDic[30], -1 * self.speedDic[30]])
+            elif value == 'fl':
+                print('Left and forward')
+                Motors().set_value([self.speedDic[20], self.speedDic[30] + 0.05])
+            elif value == 'fr':
+                print('Right and forward')
+                Motors().set_value([self.speedDic[30] + 0.05, self.speedDic[20]])
             elif value == "s":
                 print("Stop")
                 Motors().stop()
             elif value == "b":
                 print("Backwards")
                 Motors().backward(0.9, 0.25)
+            elif value == 'p':
+                print('CHEEEEESE!')
+                CameraSensob().update()
             elif value == "none":
                 continue
 
-        # Kan legge til oppdatering av kamera hvis vi onsker det
-        #    elif value == "p":
-        #        CameraSensob().update()
 
     @staticmethod
     def turn_n_degrees(deg):

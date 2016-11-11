@@ -84,7 +84,7 @@ class UltrasonicSensob(Sensob):
     def get_value(self):
         """
         Getter for value.
-        :return: Value
+        :return: Value as distance in centimeters.
         """
         return self.value
 
@@ -104,7 +104,7 @@ class IRSensob(Sensob):
 
 class IRSensobLeft(IRSensob):
     """
-    IR-sensor left.
+    IR-sensor left. Value is True if obstruction is there.
     """
 
     def __init__(self):
@@ -121,7 +121,7 @@ class IRSensobLeft(IRSensob):
     def get_value(self):
         """
         Getter for value.
-        :return: Value
+        :return: Value as boolean.
         """
         return self.value
 
@@ -142,7 +142,7 @@ class IRSensobRight(IRSensob):
     def get_value(self):
         """
         Getter for value.
-        :return: Value
+        :return: Value as boolean.
         """
         return self.value
 
@@ -170,6 +170,6 @@ class CameraSensob(Sensob):
     def get_value(self):
         """
         Getter for value
-        :return: Value
+        :return: Value as RGB-array.
         """
         return self.value
