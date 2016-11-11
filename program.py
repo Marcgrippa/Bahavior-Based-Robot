@@ -14,6 +14,7 @@ def main():
     obstruction = Obstruction(bbcon)
     fuck_offers = TallObstructions(bbcon)
     ninja_geir = Reverse(bbcon)
+    kikkert_stine = Photo(bbcon)
 
     # Legger til behavior
     #bbcon.add_behavior(drive_forward)
@@ -21,6 +22,7 @@ def main():
     bbcon.add_behavior(obstruction)
     bbcon.add_behavior(fuck_offers)
     bbcon.add_behavior(ninja_geir)
+    bbcon.add_behavior(kikkert_stine)
 
     ZumoButton().wait_for_press()
 
