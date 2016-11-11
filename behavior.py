@@ -209,14 +209,14 @@ class TallObstructions(Behavior):
 
         if self.l_IR_sensob.get_value() and self.r_IR_sensob.get_value():
             self.motor_recommendations = ["b"]
-            self.match_degree = 0.2
+            self.match_degree = 0.9
 
         elif self.r_IR_sensob.get_value():
             self.motor_recommendations = ["l"]
-            self.match_degree = 0.9
+            self.match_degree = 0.8
 
         elif self.l_IR_sensob.get_value():
             self.motor_recommendations = ["r"]
-            self.match_degree = 0.9
+            self.match_degree = 0.8
 
         self.priority = 0.4
