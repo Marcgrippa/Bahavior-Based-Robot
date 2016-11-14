@@ -50,7 +50,7 @@ class ReflectanceSensob(Sensob):
         """
         self.sensor.update()
         self.value = self.sensor.get_value()
-        print('Reflectance values: ' + str(self.value))
+        #print('Reflectance values: ' + str(self.value))
         return self.value
 
     def get_value(self):
@@ -162,7 +162,6 @@ class CameraSensob(Sensob):
         """
         Updates values
         """
-        print('Updating camera sensor...')
         self.sensor.update()
         self.value = self.sensor.get_value()
         return self.value

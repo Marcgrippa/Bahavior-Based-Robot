@@ -9,7 +9,7 @@ class Bbcon:
         self.behaviors = []                     # a list of all the behavior objects used by the bbcon
         self.active_behaviors = []              # a list of all behaviors that are currently active.
         self.sensobs = []                       # a list of all sensory objects used by the bbcon
-        self.motobs = Motob()                   # a list of all motor objects used by the bbcon
+        self.motobs = Motob(self)               # a list of all motor objects used by the bbcon
         self.arbitrator = Arbitrator()          # the arbitrator object that will resolve actuator requests produced by the behaviors.
         self.num_timesteps = 0                  # number of timesteps done
         self.can_take_photo = False
@@ -52,6 +52,7 @@ class Bbcon:
             behaviour.update()
 
         # Returns recommondations of
+        print("Active behaviors", self.active_behaviors)
         motor_recoms = self.arbitrator.choose_action(self.active_behaviors)
 
         # Update motobs

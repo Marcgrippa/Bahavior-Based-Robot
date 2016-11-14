@@ -16,6 +16,7 @@ class Arbitrator:
 
             # if a behavior has a halt request -> abort and report back to Bbcon
             if behavior.halt_request:
+                print(behavior.name, "won!")
                 return behavior.motor_recommendations
 
             # Choose a winning behavior
@@ -27,5 +28,7 @@ class Arbitrator:
         # Winning behaviors motor recommendations gets sent back to Bbcon
 
         if winning_behavior is None:
+            print("Winning behavior is None. Driving forward!")
             return ["f"]
+        print(winning_behavior.name, "won!")
         return winning_behavior.motor_recommendations

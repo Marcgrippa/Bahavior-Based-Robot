@@ -6,7 +6,8 @@ class Motob:
     """
 
     """
-    def __init__(self):
+    def __init__(self, bbcon):
+        self.bbcon = bbcon
         # Most recent motor recommendation sent to the motob
         self.values = []
         # Objektet Motors
@@ -38,6 +39,7 @@ class Motob:
         """
 
         for value in self.values:
+            print("Motor Req = ", value)
             if value == "f":
                 print("Forward")
                 Motors().set_value([self.speedDic[25], self.speedDic[25]])
@@ -54,9 +56,10 @@ class Motob:
                 print('Right and forward')
                 Motors().set_value([self.speedDic[35], self.speedDic[5]])
             elif value == 't':
-                Motors().set_value([self.speedDic[5], self.speedDic[35]])
-                Motors().set_value([self.speedDic[35], self.speedDic[5]])
+                Motors().set_value([-1, 1], 0.5)
+                Motors().set_value([1, -1], 0.5)
                 print("Doing some sick tricks! #hardcore")
+                self.bbcon.photo_taken()
             elif value == "s":
                 print("Stop")
                 Motors().stop()

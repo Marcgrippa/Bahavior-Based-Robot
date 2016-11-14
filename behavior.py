@@ -15,6 +15,7 @@ class Behavior:
         self.priority = 0                                       # a static, pre-defined value indicating the importance of this behavior.
         self.match_degree = 0                                   # a real number in the range [0, 1] indicating the degree to which current conditions warrant the performance of this behavior.
         self.weight = self.match_degree * self.priority         # weight - the product of the priority and the match degree, which the arbitrator uses as the basis for selecting the winning behavior for a timestep.
+        self.name = ""
 
     @abstractclassmethod
     def consider_deactivation(self):
@@ -44,6 +45,7 @@ class Obstruction(Behavior):
     # add sensob to behavior
     def __init__(self, bbcon):
         super(Obstruction,self).__init__(bbcon)
+        self.name = "Obstruction"
         self.u_sensob = UltrasonicSensob()
         self.sensobs.append(self.u_sensob)
 
@@ -94,6 +96,7 @@ class Obstruction(Behavior):
 class DriveForward(Behavior):
     def __init__(self, bbcon):
         super(DriveForward, self).__init__(bbcon)
+        self.name = "DriveForward"
         self.active_flag = True
         self.r_sensob = ReflectanceSensob()
         self.sensobs.append(self.r_sensob)
@@ -108,9 +111,9 @@ class DriveForward(Behavior):
 
     def update(self):
         self.r_sensob.update()
-        print("ReflectanceSensob:\n")
-        print(self.r_sensob.get_value())
-        print("\n")
+        #print("ReflectanceSensob:\n")
+        #print(self.r_sensob.get_value())
+        #print("\n")
         self.consider_activation()
         self.sense_and_act()
         self.weight = self.priority * self.match_degree
@@ -125,6 +128,7 @@ class FollowLine(Behavior):
 
     def __init__(self, bbcon):
         super(FollowLine, self).__init__(bbcon)
+        self.name = "FollowLine"
         self.r_sensob = ReflectanceSensob()
         self.sensobs.append(self.r_sensob)
         self.treshold = 0.3
@@ -174,6 +178,7 @@ class TallObstructions(Behavior):
 
     def __init__(self, bbcon):
         super(TallObstructions, self).__init__(bbcon)
+        self.name = "TallObstructions"
         self.l_IR_sensob = IRSensobLeft()
         self.r_IR_sensob = IRSensobRight()
 
@@ -225,6 +230,7 @@ class Reverse(Behavior):
 
     def __init__(self, bbcon):
         super(Reverse, self).__init__(bbcon)
+        self.name = "Reverse"
         self.get_sensobs()
 
     def get_sensobs(self):
@@ -248,7 +254,6 @@ class Reverse(Behavior):
     def consider_activation(self):
 
         if self.l_IR_sensob.get_value() and self.r_IR_sensob.get_value():
-            print("Activate reverse")
             self.bbcon.activate_bahavior(self)
             self.active_flag = True
             self.halt_request = True
@@ -256,7 +261,6 @@ class Reverse(Behavior):
     def consider_deactivation(self):
 
         if not self.l_IR_sensob.get_value() or not self.r_IR_sensob.get_value():
-            print("Deavtivate reverse")
             self.bbcon.deactive_behavior(self)
             self.active_flag = False
             self.halt_request = False
@@ -265,7 +269,7 @@ class Reverse(Behavior):
     def update(self):
         self.l_IR_sensob.update()
         self.r_IR_sensob.update()
-        print("Right", self.l_IR_sensob.get_value(), "Left: ", self.r_IR_sensob.get_value())
+        #print("Right", self.l_IR_sensob.get_value(), "Left: ", self.r_IR_sensob.get_value())
 
         if self.active_flag:
             self.consider_deactivation()
@@ -289,6 +293,7 @@ class Reverse(Behavior):
 class Photo(Behavior):
     def __init__(self, bbcon):
         super(Photo, self).__init__(bbcon)
+        self.name = "Photo"
         self.c_sensob = CameraSensob()
         self.sensobs.append(self.c_sensob)
 
@@ -312,7 +317,7 @@ class Photo(Behavior):
             self.consider_deactivation()
 
         else:
-            self.consider_deactivation()
+            self.consider_activation()
 
         self.sense_and_act()
         self.weight = self.priority * self.match_degree
@@ -324,9 +329,8 @@ class Photo(Behavior):
             image_obj = self.c_sensob.update()
             img = Imager(image=image_obj)
             img.dump_image('/')
-            self.bbcon.photo_taken()
-            self.match_degree = 0.9
 
+            self.match_degree = 0.9
 
             triple2 = [0] * 3
             for x in range(img.xmax):
@@ -334,9 +338,15 @@ class Photo(Behavior):
                     t = img.get_pixel(x, y)
                     for i in range(len(triple2)):
                         triple2[i] += t[i]
-            t3 = []
-            if triple2[0] > triple2[1]:
-                self.motor_recommendations["t"]
 
-            self.priority = 0.7
-            
+            print("RGB", triple2)
+            print(triple2[0] > triple2[1] and triple2[0] > triple2[2])
+
+            if triple2[0] > triple2[1] and triple2[0] > triple2[2]:
+                self.motor_recommendations = ['t']
+
+            else:
+                self.motor_recommendations = ['f']
+                self.bbcon.photo_taken()
+
+            self.priority = 0.9
