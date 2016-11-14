@@ -127,12 +127,12 @@ class FollowLine(Behavior):
         super(FollowLine, self).__init__(bbcon)
         self.r_sensob = ReflectanceSensob()
         self.sensobs.append(self.r_sensob)
-        self.treshold = 0.5
+        self.treshold = 0.3
 
     def consider_activation(self):
 
         for value in self.r_sensob.update():
-            if value < 0.1:
+            if value < self.treshold:
                 self.bbcon.activate_bahavior(self)
                 self.active_flag = True
                 return
@@ -155,11 +155,11 @@ class FollowLine(Behavior):
 
         self.r_sensob.update()
 
-        if self.r_sensob.get_value()[0] < self.treshold or self.r_sensob.get_value()[1] < self.treshold :
+        if self.r_sensob.get_value()[1] < self.treshold:
             self.motor_recommendations = ["l"]
             self.match_degree = 0.8
 
-        elif self.r_sensob.get_value()[4] < self.treshold or self.r_sensob.get_value()[5] < self.treshold:
+        elif self.r_sensob.get_value()[4] < self.treshold:
             self.motor_recommendations = ["r"]
             self.match_degree = 0.8
 

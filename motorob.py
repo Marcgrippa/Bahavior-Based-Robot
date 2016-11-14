@@ -11,7 +11,7 @@ class Motob:
         self.values = []
         # Objektet Motors
         self.motor = Motors()
-        self.speedDic = {100: 1, 75: 0.75, 50: 0.5, 40: 0.4, 35: 0.35, 30: 0.3, 25: 0.25, 20: 0.2, 10: 0.1, 5: 0.05, 0: 0.0}
+        self.speedDic = {100: 1, 75: 0.75, 50: 0.5, 40: 0.4, 35: 0.35, 33: 0.33, 30: 0.3, 25: 0.25, 20: 0.2, 10: 0.1, 5: 0.05, 0: 0.0}
         self.can_take_photo = False
 
     def update(self, motor_recommandation):
@@ -43,10 +43,10 @@ class Motob:
                 Motors().set_value([self.speedDic[25], self.speedDic[25]])
             elif value == "l":
                 print("Left")
-                Motors().set_value([ -1 * self.speedDic[25], self.speedDic[35]])
+                Motors().set_value([-1 * self.speedDic[25], self.speedDic[30]], 0.25)
             elif value == "r":
                 print("Right")
-                Motors().set_value([self.speedDic[35], -1 * self.speedDic[25]])
+                Motors().set_value([self.speedDic[30], -1 * self.speedDic[25]], 0.25)
             elif value == 'fl':
                 print('Left and forward')
                 Motors().set_value([self.speedDic[5], self.speedDic[35]])
