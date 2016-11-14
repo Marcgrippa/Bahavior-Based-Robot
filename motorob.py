@@ -53,6 +53,10 @@ class Motob:
             elif value == 'fr':
                 print('Right and forward')
                 Motors().set_value([self.speedDic[35], self.speedDic[5]])
+            elif value == 't':
+                Motors().set_value([self.speedDic[5], self.speedDic[35]])
+                Motors().set_value([self.speedDic[35], self.speedDic[5]])
+                print("Doing some sick tricks! #hardcore")
             elif value == "s":
                 print("Stop")
                 Motors().stop()
