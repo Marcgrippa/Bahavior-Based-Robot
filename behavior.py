@@ -327,5 +327,16 @@ class Photo(Behavior):
             self.bbcon.photo_taken()
             self.match_degree = 0.9
 
-        self.priority = 0.7
+
+            triple2 = [0] * 3
+            for x in range(img.xmax):
+                for y in range(img.ymax):
+                    t = img.get_pixel(x, y)
+                    for i in range(len(triple2)):
+                        triple2[i] += t[i]
+            t3 = []
+            if triple2[0] > triple2[1]:
+                self.motor_recommendations["t"]
+
+            self.priority = 0.7
             
