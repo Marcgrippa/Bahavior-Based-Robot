@@ -1,6 +1,6 @@
 from motors import Motors
 from sensob import CameraSensob
-
+from time import sleep
 
 class Motob:
     """
@@ -11,7 +11,7 @@ class Motob:
         self.values = []
         # Objektet Motors
         self.motor = Motors()
-        self.speedDic = {100: 1, 75: 0.75, 50: 0.5, 40: 0.4, 30: 0.3, 25: 0.25, 20: 0.2, 10: 0.1, 0: 0.0}
+        self.speedDic = {100: 1, 75: 0.75, 50: 0.5, 40: 0.4, 35: 0.35, 33: 0.33, 30: 0.3, 25: 0.25, 20: 0.2, 10: 0.1, 5: 0.05, 0: 0.0}
         self.can_take_photo = False
 
     def update(self, motor_recommandation):
@@ -40,26 +40,27 @@ class Motob:
         for value in self.values:
             if value == "f":
                 print("Forward")
-                Motors().set_value([self.speedDic[30], self.speedDic[30]])
+                Motors().set_value([self.speedDic[25], self.speedDic[25]])
             elif value == "l":
                 print("Left")
-                Motors().set_value([ -1 * self.speedDic[30], self.speedDic[30]])
+                Motors().set_value([-1 * self.speedDic[25], self.speedDic[30]], 0.25)
             elif value == "r":
                 print("Right")
-                Motors().set_value([self.speedDic[30], -1 * self.speedDic[30]])
+                Motors().set_value([self.speedDic[30], -1 * self.speedDic[25]], 0.25)
             elif value == 'fl':
                 print('Left and forward')
-                Motors().set_value([self.speedDic[20], self.speedDic[30] + 0.05])
+                Motors().set_value([self.speedDic[5], self.speedDic[35]])
             elif value == 'fr':
                 print('Right and forward')
-                Motors().set_value([self.speedDic[30] + 0.05, self.speedDic[20]])
+                Motors().set_value([self.speedDic[35], self.speedDic[5]])
             elif value == "s":
                 print("Stop")
                 Motors().stop()
             elif value == "b":
                 print("Backwards")
-                Motors().backward(0.9, 0.25)
+                Motors().backward(0.9, 0.50)
                 self.can_take_photo = True
+                sleep(1)
             elif value == 'p':
                 print('CHEEEEESE!')
                 CameraSensob().update()
