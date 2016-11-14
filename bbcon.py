@@ -38,6 +38,7 @@ class Bbcon:
 
     def photo_taken(self):
         self.can_take_photo = False
+        self.motobs.can_take_photo = False
 
     # Constitutes the core BBCON activity
     def run_one_timestep(self):
